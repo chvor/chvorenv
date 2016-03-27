@@ -95,17 +95,24 @@ function fish_right_prompt
 	set -l warn_fg $wrap'38;5;15'$end_wrap
 	set -l warn_bg $wrap'48;5;9'$end_wrap
 	set -l warn_sep_fg $wrap'38;5;9'$end_wrap
+	set -l empty 1
 
-	set -l t (__prompt_git_status)
-		and printf $c_sep_fg$rsep$c_fg$c_bg$s'%s'$s "$t"
+	if set -l t (__prompt_git_status)
+		printf $c_sep_fg$rsep$c_fg$c_bg$s'%s'$s "$t"
+		set empty 0
+	end
 
-	set -l t (__prompt_git_branch)
-		and printf $b_sep_fg$rsep$b_fg$b_bg$s'%s'$s "$t"
+	if set -l t (__prompt_git_branch)
+		printf $b_sep_fg$rsep$b_fg$b_bg$s'%s'$s "$t"
+		set empty 0
+	end
 
-	# Always print the warn sep, but don't always print the
-	# last status.
-	printf $warn_sep_fg$rsep
-	test $last_status -ne 0
-		and printf $warn_fg$warn_bg$s$last_status$s
-	printf $reset
+	if test $last_status -ne 0
+		printf $warn_sep_fg$rsep$warn_fg$warn_bg$s$last_status$s
+		set empty 0
+	end
+
+	if test $empty -eq 0
+		printf $reset
+	end
 end
