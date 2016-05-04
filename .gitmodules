@@ -1,0 +1,3 @@
+[submodule "hack"]
+	path = Hack
+	url = git@github.com:chvor/Hack
