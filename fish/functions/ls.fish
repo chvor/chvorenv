@@ -11,5 +11,9 @@ function ls
 			eval (dircolors -c $colorfile | sed 's/>&\/dev\/null$//')
 		end
 	end
-	command gnuls --color=auto -F $argv
+	if type -q -f gnuls
+		command gnuls --color=auto -F $argv
+	else
+		command ls --color=auto -F $argv
+	end
 end
