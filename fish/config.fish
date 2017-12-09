@@ -9,3 +9,5 @@ end
 if test -n "$TMUX" -a "x$TERM" = "xscreen" -a "x$ORIGTERM" = "xxterm-256color"
 	set -gx TERM screen-256color
 end
+
+. ~/.config/fish/solarized.fish
