@@ -23,7 +23,7 @@ else
 	CVT="cat"
 fi
 
-eval $( cat "$F" | $CVT | grep -e '^"Colour[0-9]\+"="[0-9]\+,[0-9]\+,[0-9]\+"$' | tr -d '"' )
+eval $( cat "$F" | $CVT | grep -e '^"Colour[0-9]\+"="[0-9]\+,[0-9]\+,[0-9]\+"' | tr -d '"' )
 echo "ForegroundColour=$Colour0"
 echo "BackgroundColour=$Colour2"
 echo "CursorColour=$Colour5"
